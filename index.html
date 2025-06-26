@@ -1,0 +1,281 @@
+<!-- Homepage -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaobi Animations Portfolio site</title>
+  <style>
+    :root {
+      --primary-color: #ff4c60;
+      --secondary-color: #1e1e2f;
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--secondary-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .profile-thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 1rem;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    #hero {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+    }
+
+    #hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    #hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-button {
+      background: white;
+      color: var(--primary-color);
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #ffe6eb;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .service-thumbnails {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .service-thumbnails a {
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-color);
+      flex: 1 1 calc(33% - 1rem);
+      min-width: 200px;
+    }
+
+    .service-thumbnails img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-thumbnails img:hover {
+      transform: scale(1.05);
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+    }
+
+    .carousel iframe {
+      flex: 0 0 auto;
+      width: 300px;
+      height: 170px;
+      border-radius: 10px;
+      scroll-snap-align: start;
+      border: none;
+    }
+
+    .about-preview-content {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .about-preview-content img {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    footer {
+      background: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    footer nav a {
+      color: white;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+
+      .service-thumbnails a {
+        flex: 1 1 100%;
+      }
+
+      .about-preview-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-preview-content img {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Jaobi Animations</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="about.html"><img src="JAOBI.png" alt="Profile" class="profile-thumb"></a>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h2>Bringing Characters to Life — One Frame at a Time</h2>
+      <p>Professional 2D Animation for Brands, Creators, and Storytellers</p>
+      <a href="portfolio.html" class="cta-button">View My Work</a>
+    </section>
+
+    <section id="services-preview">
+      <h3>What I Offer</h3>
+      <div class="service-thumbnails">
+        <a href="services.html#character-animation">
+          <img src="character-animation.png" alt="Character Animation">
+          <p>Character Animation</p>
+        </a>
+        <a href="services.html#body-turns">
+          <img src="180-turn-moho-rig.png" alt="180° Turns">
+          <p>180° Body & Head Turns</p>
+        </a>
+        <a href="services.html#stickers">
+          <img src="animated-stickers.png" alt="Animated Stickers">
+          <p>Animated Stickers & Loops</p>
+        </a>
+      </div>
+      <a href="services.html" class="cta-button">Explore More Services</a>
+    </section>
+
+  <section id="featured-work">
+  <h3>Featured Work</h3>
+  <div class="carousel">
+    <iframe src="https://www.youtube.com/embed/0QjL5gB8eg0?si=B-fM8MNbXpq4wL6T" title="Project 1" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/O3BGvuxlTpM?si=GtZPfSOt-dIzB8M1" title="Project 2" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/7j7SO4YbqmI?si=_ywZklj87LfmUWFS" title="Project 3" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/q_-pQuBhN3Y?si=_giD4vhejuXAzzf8" title="Project 4" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/0VjdJexh3x8?si=Ia8Xb6GfbJHlpCno" title="Project 5" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YzmzDDQkupA?si=wxQLxpzHWR1fKOTs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</section>
+
+    <section id="about-preview">
+      <h3>Meet Obioma</h3>
+      <div class="about-preview-content">
+        <img src="JAOBI.png" alt="Obioma">
+        <div>
+          <p>Hi, I’m Obioma — a Nigerian 2D animator with over a decade of creative experience. Whether you're looking for vibrant explainer videos, stylish social loops, or rigged characters with personality, I’ve got you covered.</p>
+          <a href="about.html" class="cta-button">More About Me</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact-cta">
+      <h3>Got a project in mind? Let’s animate it.</h3>
+      <a href="contact.html" class="cta-button">Let’s Talk</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Jaobi Animations. All rights reserved.</p>
+    <nav>
+      <a href="https://fiverr.com">Fiverr</a>
+      <a href="https://airbit.com">Airbit</a>
+    </nav>
+  </footer>
+</body>
+</html>
