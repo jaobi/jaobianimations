@@ -23,9 +23,12 @@
   <style>
     :root {
       --primary-color: #ff4c60;
+      --primary-light: #ffe6eb;
       --secondary-color: #1e1e2f;
       --bg-color: #f4f4f4;
       --text-color: #333;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
     }
 
     * {
@@ -39,6 +42,7 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* Skip to content link for accessibility */
@@ -63,7 +67,10 @@
       justify-content: space-between;
       align-items: center;
       color: white;
-      position: relative;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
@@ -131,7 +138,7 @@
 
     nav ul {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       list-style: none;
     }
 
@@ -141,12 +148,29 @@
       font-weight: bold;
       transition: color 0.3s ease;
       padding: 0.5rem;
+      position: relative;
     }
 
     nav ul li a:hover,
     nav ul li a:focus {
       color: var(--primary-color);
       outline: none;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a:focus::after {
+      width: 100%;
     }
 
     .profile-thumb {
@@ -157,6 +181,7 @@
       margin-left: 1rem;
       transition: transform 0.3s ease;
       z-index: 101;
+      border: 2px solid var(--primary-color);
     }
 
     .profile-thumb:hover {
@@ -164,18 +189,361 @@
     }
 
     main {
-      padding: 2rem;
+      padding: 0;
     }
 
     section {
-      margin-bottom: 3rem;
-      padding: 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      scroll-margin-top: 20px;
+      margin-bottom: 0;
+      padding: 4rem 2rem;
+      scroll-margin-top: 80px;
     }
 
+    section:nth-child(even) {
+      background: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #hero {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #e04153 100%);
+      color: white;
+      text-align: center;
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('animation-pattern.png') center/cover;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    #hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    #hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: var(--primary-color);
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-button:hover,
+    .cta-button:focus {
+      background: transparent;
+      color: white;
+      border-color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      outline: none;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      color: var(--primary-color);
+      font-size: 2.2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--bg-color);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-image img {
+      transform: scale(1.05);
+    }
+
+    .service-content {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .service-content h3 {
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .carousel-container {
+      position: relative;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.5rem;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel iframe {
+      flex: 0 0 auto;
+      width: 350px;
+      height: 200px;
+      border-radius: 10px;
+      scroll-snap-align: start;
+      border: none;
+      background: #000;
+      transition: var(--transition);
+    }
+
+    .carousel iframe:hover {
+      transform: scale(1.02);
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.5rem;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .carousel-dot.active {
+      background: var(--primary-color);
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .about-image {
+      flex: 0 0 300px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg-color);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 4rem;
+      color: rgba(255, 76, 96, 0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .testimonial-card p {
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .client-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-color);
+    }
+
+    .client-name {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .client-role {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    footer {
+      background: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-column h3 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-column ul li a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Responsive styles */
     @media (max-width: 768px) {
       .hamburger {
         display: block;
@@ -192,7 +560,7 @@
         justify-content: center;
         align-items: center;
         gap: 2rem;
-        transition: left 0.3s ease;
+        transition: var(--transition);
         z-index: 100;
       }
 
@@ -203,213 +571,20 @@
       .profile-thumb {
         margin-left: 0;
       }
-    }
 
-    /* Rest of your existing CSS remains the same */
-    #hero {
-      background: var(--primary-color);
-      color: white;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+      #hero h2 {
+        font-size: 2rem;
+      }
 
-    #hero h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+      .about-content {
+        flex-direction: column;
+      }
 
-    #hero p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background: white;
-      color: var(--primary-color);
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-
-    .cta-button:hover,
-    .cta-button:focus {
-      background: #ffe6eb;
-      border-color: white;
-      outline: none;
-      transform: translateY(-2px);
-    }
-
-    h2, h3 {
-      scroll-margin-top: 80px;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
-
-    .service-thumbnails {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .service-thumbnails a {
-      text-align: center;
-      text-decoration: none;
-      color: var(--text-color);
-      flex: 1 1 calc(33% - 1rem);
-      min-width: 200px;
-      transition: transform 0.3s ease;
-    }
-
-    .service-thumbnails a:hover,
-    .service-thumbnails a:focus {
-      transform: translateY(-5px);
-      outline: none;
-    }
-
-    .service-thumbnails img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-
-    .service-thumbnails img:hover {
-      transform: scale(1.05);
-    }
-
-    .carousel-container {
-      position: relative;
-    }
-
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 1rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .carousel::-webkit-scrollbar {
-      display: none;
-    }
-
-    .carousel iframe {
-      flex: 0 0 auto;
-      width: 300px;
-      height: 170px;
-      border-radius: 10px;
-      scroll-snap-align: start;
-      border: none;
-      background: #000;
-      transition: transform 0.3s ease;
-    }
-
-    .carousel iframe:hover {
-      transform: scale(1.02);
-    }
-
-    .carousel-nav {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .carousel-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ccc;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .carousel-dot.active {
-      background: var(--primary-color);
-    }
-
-    .about-preview-content {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .about-preview-content img {
-      width: 120px;
-      height: 120px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 3px solid var(--primary-color);
-    }
-
-    footer {
-      background: var(--secondary-color);
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-    }
-
-    footer nav {
-      margin: 1rem 0;
-    }
-
-    footer nav a {
-      color: white;
-      margin: 0 0.5rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    footer nav a:hover,
-    footer nav a:focus {
-      color: var(--primary-color);
-      outline: none;
-    }
-
-    /* Loading animation for carousel */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .loading {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 170px;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-      border-top-color: var(--primary-color);
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Structured data styling (hidden) */
-    .structured-data {
-      display: none;
+      .about-image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 300px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -417,30 +592,26 @@
         padding: 1rem;
       }
 
-      main {
-        padding: 1rem;
-      }
-
       section {
-        padding: 1.5rem;
+        padding: 3rem 1.5rem;
       }
 
-      .service-thumbnails a {
-        flex: 1 1 100%;
+      #hero {
+        padding: 4rem 1.5rem;
       }
 
-      .about-preview-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .about-preview-content img {
-        margin-bottom: 1rem;
+      #hero h2 {
+        font-size: 1.8rem;
       }
 
       .carousel iframe {
         width: 280px;
         height: 160px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
     }
   </style>
@@ -473,92 +644,203 @@
   </header>
 
   <main id="main-content">
-    <!-- Your existing content remains the same -->
     <section id="hero">
-      <h2>Bringing Characters to Life — One Frame at a Time</h2>
-      <p>Professional 2D Animation for Brands, Creators, and Storytellers</p>
-      <a href="portfolio.html" class="cta-button" aria-label="View my animation portfolio">View My Work</a>
+      <div class="container">
+        <h2>Bringing Characters to Life — One Frame at a Time</h2>
+        <p>Professional 2D Animation for Brands, Creators, and Storytellers</p>
+        <div class="cta-group">
+          <a href="portfolio.html" class="cta-button" aria-label="View my animation portfolio">View My Work</a>
+          <a href="contact.html" class="cta-button" aria-label="Contact me for animation projects" style="background: transparent; color: white; border-color: white; margin-left: 1rem;">Get a Quote</a>
+        </div>
+      </div>
     </section>
 
-    <section id="services-preview">
-      <h3>What I Offer</h3>
-      <div class="service-thumbnails">
-        <a href="services.html#character-animation" aria-labelledby="char-anim-label">
-          <img src="character-animation.png" alt="Example of character animation" loading="lazy">
-          <p id="char-anim-label">Character Animation</p>
-        </a>
-        <a href="services.html#body-turns" aria-labelledby="turns-label">
-          <img src="180-turn-moho-rig.png" alt="Example of 180° character turns" loading="lazy">
-          <p id="turns-label">Custom MOHO Pro Character with 180° Body & Head Turns</p>
-        </a>
-        <a href="services.html#stickers" aria-labelledby="stickers-label">
-          <img src="animated-stickers.png" alt="Example of animated stickers" loading="lazy">
-          <p id="stickers-label">Web animations, Animated Stickers & Loops</p>
-        </a>
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>My Animation Services</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-image">
+              <img src="character-animation.png" alt="Character Animation Examples" loading="lazy">
+            </div>
+            <div class="service-content">
+              <h3>Character Animation</h3>
+              <p>Expressive 2D character animation for ads, explainer videos, and creative storytelling.</p>
+              <a href="services.html#character-animation" class="cta-button" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Learn More</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="180-turn-moho-rig.png" alt="180 Degree Body Turn Example" loading="lazy">
+            </div>
+            <div class="service-content">
+              <h3>180° Body & Head Turns</h3>
+              <p>Professional rig-based body and head turns to add depth and realism to your characters.</p>
+              <a href="services.html#body-turns" class="cta-button" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Learn More</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="animated-stickers.png" alt="Animated Sticker Examples" loading="lazy">
+            </div>
+            <div class="service-content">
+              <h3>Animated Stickers & Loops</h3>
+              <p>Fun, expressive loops and stickers for social media, marketing, or personal flair.</p>
+              <a href="services.html#stickers" class="cta-button" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Learn More</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <a href="services.html" class="cta-button" aria-label="Explore all animation services">Explore More Services</a>
     </section>
 
     <section id="featured-work">
-      <h3>Featured Work</h3>
-      <div class="carousel-container">
-        <div class="carousel">
-          <iframe src="https://www.youtube.com/embed/0QjL5gB8eg0?si=B-fM8MNbXpq4wL6T" title="Character Animation Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          <iframe src="https://www.youtube.com/embed/O3BGvuxlTpM?si=GtZPfSOt-dIzB8M1" title="Explainer Video Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          <iframe src="https://www.youtube.com/embed/7j7SO4YbqmI?si=_ywZklj87LfmUWFS" title="Animated Stickers Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          <iframe src="https://www.youtube.com/embed/q_-pQuBhN3Y?si=_giD4vhejuXAzzf8" title="180° Character Turn Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          <iframe src="https://www.youtube.com/embed/0VjdJexh3x8?si=Ia8Xb6GfbJHlpCno" title="Social Media Animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          <iframe src="https://www.youtube.com/embed/YzmzDDQkupA?si=wxQLxpzHWR1fKOTs" title="MOHO Pro Rigging Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <div class="container">
+        <div class="section-title">
+          <h2>Featured Projects</h2>
         </div>
-        <div class="carousel-nav">
-          <div class="carousel-dot active" aria-label="Slide 1"></div>
-          <div class="carousel-dot" aria-label="Slide 2"></div>
-          <div class="carousel-dot" aria-label="Slide 3"></div>
-          <div class="carousel-dot" aria-label="Slide 4"></div>
-          <div class="carousel-dot" aria-label="Slide 5"></div>
-          <div class="carousel-dot" aria-label="Slide 6"></div>
+        <div class="carousel-container">
+          <div class="carousel">
+            <iframe src="https://www.youtube.com/embed/0QjL5gB8eg0?si=B-fM8MNbXpq4wL6T" title="Character Animation Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.youtube.com/embed/O3BGvuxlTpM?si=GtZPfSOt-dIzB8M1" title="Explainer Video Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.youtube.com/embed/7j7SO4YbqmI?si=_ywZklj87LfmUWFS" title="Animated Stickers Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.youtube.com/embed/q_-pQuBhN3Y?si=_giD4vhejuXAzzf8" title="180° Character Turn Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.youtube.com/embed/0VjdJexh3x8?si=Ia8Xb6GfbJHlpCno" title="Social Media Animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.youtube.com/embed/YzmzDDQkupA?si=wxQLxpzHWR1fKOTs" title="MOHO Pro Rigging Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="carousel-nav">
+            <div class="carousel-dot active" aria-label="Slide 1"></div>
+            <div class="carousel-dot" aria-label="Slide 2"></div>
+            <div class="carousel-dot" aria-label="Slide 3"></div>
+            <div class="carousel-dot" aria-label="Slide 4"></div>
+            <div class="carousel-dot" aria-label="Slide 5"></div>
+            <div class="carousel-dot" aria-label="Slide 6"></div>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section id="about-preview">
-      <h3>Meet Obioma</h3>
-      <div class="about-preview-content">
-        <img src="JAOBI.png" alt="Obioma - 2D Animator" loading="lazy">
-        <div>
-          <p>Hi, I'm Obioma — a Nigerian 2D animator with over a decade of creative experience. Whether you're looking for vibrant explainer videos, stylish social loops, or rigged characters with personality, I've got you covered.</p>
-          <a href="about.html" class="cta-button" aria-label="Learn more about Obioma">More About Me</a>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="portfolio.html" class="cta-button">View Full Portfolio</a>
         </div>
       </div>
     </section>
 
-    <section id="contact-cta">
-      <h3>Got a project in mind? Let's animate it.</h3>
-      <a href="contact.html" class="cta-button" aria-label="Contact Obioma for animation projects">Let's Talk</a>
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>Meet The Animator</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-image">
+            <img src="JAOBI.png" alt="Obioma - Professional 2D Animator" loading="lazy">
+          </div>
+          <div class="about-text">
+            <p>Hi, I'm Obioma — a Nigerian 2D animator with over a decade of creative experience. My journey in animation began with a passion for storytelling and character design, which led me to study Computer Science at Babcock University to combine technical skills with artistic creativity.</p>
+            <p>Specializing in character animation, rigging, and motion design, I bring a unique perspective to every project. My work combines technical precision with artistic flair, resulting in animations that are both visually stunning and emotionally resonant.</p>
+            <p>When I'm not animating, you can find me sketching new characters, studying animation techniques, or mentoring aspiring animators in my community.</p>
+            <a href="about.html" class="cta-button">More About Me</a>
+          </div>
+        </div>
+      </div>
     </section>
-    
-    <!-- Structured data for SEO -->
-    <div class="structured-data" itemscope itemtype="https://schema.org/Person">
-      <span itemprop="name">Obioma</span>
-      <span itemprop="jobTitle">2D Animator</span>
-      <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
-        <span itemprop="name">Jaobi Animations</span>
-      </span>
-      <span itemprop="description">Professional 2D Animator specializing in character animation, 180° turns, and animated stickers</span>
-    </div>
+
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>Client Testimonials</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p>Jaobi Animations brought our brand story to life in ways we never imagined. The attention to detail and creative approach exceeded our expectations.</p>
+            <div class="client-info">
+              <img src="client1.jpg" alt="Sarah Johnson" class="client-avatar" loading="lazy">
+              <div>
+                <div class="client-name">Sarah Johnson</div>
+                <div class="client-role">Marketing Director, TechStart Inc.</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>Working with Obioma was an absolute pleasure. Professional, creative, and always delivered on time. Our explainer video increased conversions by 30%!</p>
+            <div class="client-info">
+              <img src="client2.jpg" alt="Michael Chen" class="client-avatar" loading="lazy">
+              <div>
+                <div class="client-name">Michael Chen</div>
+                <div class="client-role">CEO, HealthPlus</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>The animated series Jaobi created for our educational platform has been a huge hit with kids and parents alike. We'll definitely be working together again.</p>
+            <div class="client-info">
+              <img src="client3.jpg" alt="Amina Diallo" class="client-avatar" loading="lazy">
+              <div>
+                <div class="client-name">Amina Diallo</div>
+                <div class="client-role">Founder, LearnBright</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta">
+      <div class="container" style="text-align: center;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Ready to Bring Your Ideas to Life?</h2>
+        <p style="max-width: 700px; margin: 0 auto 2rem;">Whether you have a complete storyboard or just an idea, I can help you create engaging animations that connect with your audience.</p>
+        <a href="contact.html" class="cta-button">Get Started Today</a>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; <span id="current-year">2025</span> Jaobi Animations. All rights reserved.</p>
-    <nav>
-      <a href="https://fiverr.com" rel="noopener noreferrer" target="_blank">Fiverr</a>
-      <a href="https://airbit.com" rel="noopener noreferrer" target="_blank">Airbit</a>
-    </nav>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Jaobi Animations</h3>
+        <p>Professional 2D animation services specializing in character animation, explainer videos, and motion design.</p>
+        <div class="social-links">
+          <a href="https://www.youtube.com/@jaobianimations" aria-label="YouTube" target="_blank" rel="noopener noreferrer">🎬</a>
+          <a href="https://www.instagram.com/jaobianimations" aria-label="Instagram" target="_blank" rel="noopener noreferrer">📷</a>
+          <a href="https://www.linkedin.com/in/jaobianimations" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">💼</a>
+          <a href="https://www.twitter.com/jaobianimations" aria-label="Twitter" target="_blank" rel="noopener noreferrer">🐦</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="services.html#character-animation">Character Animation</a></li>
+          <li><a href="services.html#body-turns">180° Body Turns</a></li>
+          <li><a href="services.html#stickers">Animated Stickers</a></li>
+          <li><a href="services.html#explainer-videos">Explainer Videos</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:contact@jaobianimations.com">contact@jaobianimations.com</a></li>
+          <li><a href="tel:+2341234567890">+234 123 456 7890</a></li>
+          <li><a href="https://wa.me/2341234567890" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li>Lagos, Nigeria</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; <span id="current-year">2025</span> Jaobi Animations. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
-    // Hamburger Menu Functionality
     document.addEventListener('DOMContentLoaded', function() {
+      // Hamburger menu functionality
       const hamburger = document.querySelector('.hamburger');
       const navMenu = document.querySelector('nav ul');
       
@@ -607,14 +889,34 @@
         });
       }
       
+      // Lazy loading for images
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            imageObserver.unobserve(img);
+          }
+        });
+      }, { rootMargin: '200px' });
+      
+      lazyImages.forEach(img => {
+        if (!img.src) {
+          img.dataset.src = img.getAttribute('src');
+          img.removeAttribute('src');
+          imageObserver.observe(img);
+        }
+      });
+      
       // Lazy loading for iframes
       const lazyIframes = document.querySelectorAll('iframe[loading="lazy"]');
-      const observer = new IntersectionObserver((entries) => {
+      const iframeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const iframe = entry.target;
             iframe.src = iframe.dataset.src;
-            observer.unobserve(iframe);
+            iframeObserver.unobserve(iframe);
           }
         });
       }, { rootMargin: '200px' });
@@ -622,7 +924,7 @@
       lazyIframes.forEach(iframe => {
         iframe.dataset.src = iframe.src;
         iframe.src = '';
-        observer.observe(iframe);
+        iframeObserver.observe(iframe);
       });
     });
   </script>
