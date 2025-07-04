@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional 2D animation services including character animation, 180° turns, and animated stickers by Jaobi Animations">
+  <meta name="keywords" content="2D animation services, character animation, MOHO Pro rigging, animated stickers, explainer videos">
+  <title>Animation Services | Jaobi Animations</title>
+  <style>
+    :root {
+      --primary-color: #ff4c60;
+      --secondary-color: #1e1e2f;
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.7;
+    }
+
+    /* Skip to content link for accessibility */
+    .skip-to-content {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--primary-color);
+      color: white;
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .skip-to-content:focus {
+      left: 0;
+    }
+
+    header {
+      background: var(--secondary-color);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--primary-color);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a:focus::after {
+      width: 100%;
+    }
+
+    nav ul li a.active {
+      color: var(--primary-color);
+    }
+
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    /* Hamburger menu for mobile */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      transition: var(--transition);
+    }
+
+    main {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-header h2 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .page-header p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-image img {
+      transform: scale(1.05);
+    }
+
+    .service-content {
+      padding: 1.5rem;
+    }
+
+    .service-content h3 {
+      color: var(--secondary-color);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-content .price {
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .service-content ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .service-content .delivery-time {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-content .delivery-time i {
+      color: var(--primary-color);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transition);
+      flex: 1;
+    }
+
+    .primary-button {
+      background: var(--primary-color);
+      color: white;
+      border: 2px solid var(--primary-color);
+    }
+
+    .primary-button:hover {
+      background: #e04153;
+      border-color: #e04153;
+    }
+
+    .secondary-button {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .secondary-button:hover {
+      background: #ffe6eb;
+    }
+
+    .process-section {
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+      margin: 4rem 0;
+    }
+
+    .process-section h3 {
+      text-align: center;
+      color: var(--secondary-color);
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .process-step i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      background: #ffe6eb;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .process-step h4 {
+      color: var(--secondary-color);
+      margin: 1rem 0 0.5rem;
+    }
+
+    footer {
+      background: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--secondary-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transition: var(--transition);
+      }
+
+      nav ul.show {
+        left: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+
+      .page-header h2 {
+        font-size: 2rem;
+      }
+
+      .process-section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  
+  <header>
+    <h1>Jaobi Animations</h1>
+    <button class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-header">
+      <h2>Animation Services</h2>
+      <p>Professional 2D animation services tailored to bring your ideas to life. From character animation to explainer videos, I create engaging motion that connects with your audience.</p>
+    </section>
+
+    <div class="services-grid">
+      <article class="service-card" id="character-animation">
+        <div class="service-image">
+          <img src="character-animation.png" alt="Character Animation Examples" loading="lazy">
+        </div>
+        <div class="service-content">
+          <h3>Character Animation</h3>
+          <div class="price">Starting at $150</div>
+          <p>Expressive 2D character animation for ads, explainer videos, and creative storytelling. Perfect for brands and content creators looking to engage their audience.</p>
+          <ul>
+            <li>Custom character design available</li>
+            <li>Lip sync for dialogue scenes</li>
+            <li>Multiple animation styles</li>
+            <li>Full HD resolution</li>
+          </ul>
+          <div class="delivery-time">
+            <i class="fas fa-clock"></i>
+            <span>Delivery time: 3-5 days</span>
+          </div>
+          <div class="cta-buttons">
+            <a href="https://www.fiverr.com/jaobianimations/character-animation" class="cta-button primary-button" target="_blank" rel="noopener noreferrer">
+              Order Now
+            </a>
+            <a href="portfolio.html#character" class="cta-button secondary-button">
+              View Examples
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card" id="body-turns">
+        <div class="service-image">
+          <img src="180-turn-moho-rig.png" alt="180 Degree Body Turn Example" loading="lazy">
+        </div>
+        <div class="service-content">
+          <h3>180° Body & Head Turns</h3>
+          <div class="price">Starting at $250</div>
+          <p>Professional rig-based body and head turns to add depth, realism, and motion to your characters using Moho Pro. Essential for game animations and interactive media.</p>
+          <ul>
+            <li>Smooth 180° rotation</li>
+            <li>Customizable rig setup</li>
+            <li>Compatible with Moho Pro</li>
+            <li>Includes blend shapes</li>
+          </ul>
+          <div class="delivery-time">
+            <i class="fas fa-clock"></i>
+            <span>Delivery time: 5-7 days</span>
+          </div>
+          <div class="cta-buttons">
+            <a href="https://www.fiverr.com/jaobianimations/180-body-turn" class="cta-button primary-button" target="_blank" rel="noopener noreferrer">
+              Order Now
+            </a>
+            <a href="portfolio.html#turns" class="cta-button secondary-button">
+              View Examples
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card" id="stickers">
+        <div class="service-image">
+          <img src="animated-stickers.png" alt="Animated Sticker Examples" loading="lazy">
+        </div>
+        <div class="service-content">
+          <h3>Animated Stickers & Loops</h3>
+          <div class="price">Starting at $75</div>
+          <p>Fun, expressive loops and Telegram/WhatsApp stickers for social media, content marketing, or just personal flair. Perfect for brands and influencers.</p>
+          <ul>
+            <li>Social media ready formats</li>
+            <li>Seamless looping animation</li>
+            <li>Transparent background</li>
+            <li>Multiple sticker packages</li>
+          </ul>
+          <div class="delivery-time">
+            <i class="fas fa-clock"></i>
+            <span>Delivery time: 2-3 days</span>
+          </div>
+          <div class="cta-buttons">
+            <a href="https://www.fiverr.com/jaobianimations/animated-stickers" class="cta-button primary-button" target="_blank" rel="noopener noreferrer">
+              Order Now
+            </a>
+            <a href="portfolio.html#stickers" class="cta-button secondary-button">
+              View Examples
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card" id="explainer-videos">
+        <div class="service-image">
+          <img src="explainer-video.jpg" alt="Explainer Video Example" loading="lazy">
+        </div>
+        <div class="service-content">
+          <h3>Explainer Videos</h3>
+          <div class="price">Starting at $300</div>
+          <p>Engaging 2D explainer videos that simplify complex ideas and showcase your product or service. Complete package from script to final animation.</p>
+          <ul>
+            <li>60-90 second animations</li>
+            <li>Script writing available</li>
+            <li>Voiceover integration</li>
+            <li>Background music options</li>
+          </ul>
+          <div class="delivery-time">
+            <i class="fas fa-clock"></i>
+            <span>Delivery time: 7-10 days</span>
+          </div>
+          <div class="cta-buttons">
+            <a href="https://www.fiverr.com/jaobianimations/explainer-video" class="cta-button primary-button" target="_blank" rel="noopener noreferrer">
+              Order Now
+            </a>
+            <a href="portfolio.html#explainer" class="cta-button secondary-button">
+              View Examples
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="process-section">
+      <h3>My Animation Process</h3>
+      <div class="process-steps">
+        <div class="process-step">
+          <i class="fas fa-comments"></i>
+          <h4>Consultation</h4>
+          <p>We discuss your project requirements, goals, and vision to ensure perfect alignment.</p>
+        </div>
+        <div class="process-step">
+          <i class="fas fa-pencil-alt"></i>
+          <h4>Concept & Storyboard</h4>
+          <p>I create sketches and a storyboard to visualize the animation sequence.</p>
+        </div>
+        <div class="process-step">
+          <i class="fas fa-paint-brush"></i>
+          <h4>Design</h4>
+          <p>Characters, backgrounds, and assets are designed according to your brand.</p>
+        </div>
+        <div class="process-step">
+          <i class="fas fa-film"></i>
+          <h4>Animation</h4>
+          <p>Bringing everything to life with smooth, expressive motion and timing.</p>
+        </div>
+        <div class="process-step">
+          <i class="fas fa-check-circle"></i>
+          <h4>Delivery</h4>
+          <p>Final files delivered in your preferred formats with any requested revisions.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="current-year">2025</span> Jaobi Animations. All rights reserved.</p>
+    <p>Bringing your stories to life through animation</p>
+    <div class="social-links">
+      <a href="https://www.tiktok.com/@jaobianimations" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.linkedin.com/in/jaobianimations" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/@jaobianimations" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hamburger menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('nav ul');
+      
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navMenu.classList.toggle('show');
+      });
+      
+      // Close menu when clicking on a link
+      document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('show');
+        });
+      });
+      
+      // Update copyright year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

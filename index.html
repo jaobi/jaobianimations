@@ -1,10 +1,25 @@
-<!-- Homepage -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaobi Animations Portfolio site</title>
+  <meta name="description" content="Professional 2D Animation services by Jaobi Animations - Character animation, 180° turns, animated stickers and more">
+  <meta name="keywords" content="2D animation, character animation, MOHO Pro, animated stickers, Obioma, Jaobi Animations">
+  <meta name="author" content="Obioma - Jaobi Animations">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Jaobi Animations - Professional 2D Animation Services">
+  <meta property="og:description" content="Bringing Characters to Life — One Frame at a Time. Professional 2D Animation for Brands, Creators, and Storytellers">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.jaobianimations.com">
+  <meta property="og:image" content="https://www.jaobianimations.com/JAOBI.png">
+  
+  <title>Jaobi Animations - Professional 2D Animation Portfolio</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="JAOBI.png" as="image">
+  <link rel="preload" href="character-animation.png" as="image">
+  
   <style>
     :root {
       --primary-color: #ff4c60;
@@ -26,6 +41,21 @@
       line-height: 1.6;
     }
 
+    /* Skip to content link for accessibility */
+    .skip-to-content {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--primary-color);
+      color: white;
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .skip-to-content:focus {
+      left: 0;
+    }
+
     header {
       background: var(--secondary-color);
       padding: 1rem 2rem;
@@ -33,24 +63,90 @@
       justify-content: space-between;
       align-items: center;
       color: white;
-      flex-wrap: wrap;
+      position: relative;
     }
 
     header h1 {
       font-size: 1.5rem;
+      z-index: 101;
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+      z-index: 101;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0;
+    }
+
+    .hamburger span:nth-child(2),
+    .hamburger span:nth-child(3) {
+      top: 11px;
+    }
+
+    .hamburger span:nth-child(4) {
+      top: 22px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      top: 11px;
+      width: 0%;
+      left: 50%;
+    }
+
+    .hamburger.active span:nth-child(2) {
+      transform: rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    .hamburger.active span:nth-child(4) {
+      top: 11px;
+      width: 0%;
+      left: 50%;
     }
 
     nav ul {
       display: flex;
       gap: 1rem;
       list-style: none;
-      flex-wrap: wrap;
     }
 
     nav ul li a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--primary-color);
+      outline: none;
     }
 
     .profile-thumb {
@@ -59,6 +155,12 @@
       border-radius: 50%;
       object-fit: cover;
       margin-left: 1rem;
+      transition: transform 0.3s ease;
+      z-index: 101;
+    }
+
+    .profile-thumb:hover {
+      transform: scale(1.1);
     }
 
     main {
@@ -71,12 +173,45 @@
       background: white;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      scroll-margin-top: 20px;
     }
 
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--secondary-color);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: left 0.3s ease;
+        z-index: 100;
+      }
+
+      nav ul.active {
+        left: 0;
+      }
+
+      .profile-thumb {
+        margin-left: 0;
+      }
+    }
+
+    /* Rest of your existing CSS remains the same */
     #hero {
       background: var(--primary-color);
       color: white;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
     #hero h2 {
@@ -90,17 +225,27 @@
     }
 
     .cta-button {
+      display: inline-block;
       background: white;
       color: var(--primary-color);
       padding: 0.75rem 1.5rem;
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
-    .cta-button:hover {
+    .cta-button:hover,
+    .cta-button:focus {
       background: #ffe6eb;
+      border-color: white;
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    h2, h3 {
+      scroll-margin-top: 80px;
     }
 
     h3 {
@@ -122,16 +267,29 @@
       color: var(--text-color);
       flex: 1 1 calc(33% - 1rem);
       min-width: 200px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-thumbnails a:hover,
+    .service-thumbnails a:focus {
+      transform: translateY(-5px);
+      outline: none;
     }
 
     .service-thumbnails img {
       width: 100%;
       border-radius: 10px;
       transition: transform 0.3s ease;
+      aspect-ratio: 16/9;
+      object-fit: cover;
     }
 
     .service-thumbnails img:hover {
       transform: scale(1.05);
+    }
+
+    .carousel-container {
+      position: relative;
     }
 
     .carousel {
@@ -140,6 +298,12 @@
       gap: 1rem;
       scroll-snap-type: x mandatory;
       padding-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
     }
 
     .carousel iframe {
@@ -149,6 +313,32 @@
       border-radius: 10px;
       scroll-snap-align: start;
       border: none;
+      background: #000;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel iframe:hover {
+      transform: scale(1.02);
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--primary-color);
     }
 
     .about-preview-content {
@@ -163,26 +353,76 @@
       height: 120px;
       border-radius: 10px;
       object-fit: cover;
+      border: 3px solid var(--primary-color);
     }
 
     footer {
       background: var(--secondary-color);
       color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
+    }
+
+    footer nav {
+      margin: 1rem 0;
     }
 
     footer nav a {
       color: white;
       margin: 0 0.5rem;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
 
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-start;
+    footer nav a:hover,
+    footer nav a:focus {
+      color: var(--primary-color);
+      outline: none;
+    }
+
+    /* Loading animation for carousel */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 170px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Structured data styling (hidden) */
+    .structured-data {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+
+      section {
+        padding: 1.5rem;
       }
 
       .service-thumbnails a {
@@ -197,13 +437,29 @@
       .about-preview-content img {
         margin-bottom: 1rem;
       }
+
+      .carousel iframe {
+        width: 280px;
+        height: 160px;
+      }
     }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  
   <header>
+    <h1>Jaobi Animations</h1>
+    
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
     <nav>
-      <h1>Jaobi Animations</h1>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
@@ -212,70 +468,163 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <a href="about.html"><img src="JAOBI.png" alt="Profile" class="profile-thumb"></a>
+    
+    <a href="about.html" aria-label="About page"><img src="JAOBI.png" alt="Obioma's profile picture" class="profile-thumb" loading="lazy"></a>
   </header>
 
-  <main>
+  <main id="main-content">
+    <!-- Your existing content remains the same -->
     <section id="hero">
       <h2>Bringing Characters to Life — One Frame at a Time</h2>
       <p>Professional 2D Animation for Brands, Creators, and Storytellers</p>
-      <a href="portfolio.html" class="cta-button">View My Work</a>
+      <a href="portfolio.html" class="cta-button" aria-label="View my animation portfolio">View My Work</a>
     </section>
 
     <section id="services-preview">
       <h3>What I Offer</h3>
       <div class="service-thumbnails">
-        <a href="services.html#character-animation">
-          <img src="character-animation.png" alt="Character Animation">
-          <p>Character Animation</p>
+        <a href="services.html#character-animation" aria-labelledby="char-anim-label">
+          <img src="character-animation.png" alt="Example of character animation" loading="lazy">
+          <p id="char-anim-label">Character Animation</p>
         </a>
-        <a href="services.html#body-turns">
-          <img src="180-turn-moho-rig.png" alt="180° Turns">
-          <p>180° Body & Head Turns</p>
+        <a href="services.html#body-turns" aria-labelledby="turns-label">
+          <img src="180-turn-moho-rig.png" alt="Example of 180° character turns" loading="lazy">
+          <p id="turns-label">Custom MOHO Pro Character with 180° Body & Head Turns</p>
         </a>
-        <a href="services.html#stickers">
-          <img src="animated-stickers.png" alt="Animated Stickers">
-          <p>Animated Stickers & Loops</p>
+        <a href="services.html#stickers" aria-labelledby="stickers-label">
+          <img src="animated-stickers.png" alt="Example of animated stickers" loading="lazy">
+          <p id="stickers-label">Web animations, Animated Stickers & Loops</p>
         </a>
       </div>
-      <a href="services.html" class="cta-button">Explore More Services</a>
+      <a href="services.html" class="cta-button" aria-label="Explore all animation services">Explore More Services</a>
     </section>
 
-  <section id="featured-work">
-  <h3>Featured Work</h3>
-  <div class="carousel">
-    <iframe src="https://www.youtube.com/embed/0QjL5gB8eg0?si=B-fM8MNbXpq4wL6T" title="Project 1" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/O3BGvuxlTpM?si=GtZPfSOt-dIzB8M1" title="Project 2" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/7j7SO4YbqmI?si=_ywZklj87LfmUWFS" title="Project 3" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/q_-pQuBhN3Y?si=_giD4vhejuXAzzf8" title="Project 4" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/0VjdJexh3x8?si=Ia8Xb6GfbJHlpCno" title="Project 5" frameborder="0" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/YzmzDDQkupA?si=wxQLxpzHWR1fKOTs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-</section>
+    <section id="featured-work">
+      <h3>Featured Work</h3>
+      <div class="carousel-container">
+        <div class="carousel">
+          <iframe src="https://www.youtube.com/embed/0QjL5gB8eg0?si=B-fM8MNbXpq4wL6T" title="Character Animation Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/O3BGvuxlTpM?si=GtZPfSOt-dIzB8M1" title="Explainer Video Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/7j7SO4YbqmI?si=_ywZklj87LfmUWFS" title="Animated Stickers Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/q_-pQuBhN3Y?si=_giD4vhejuXAzzf8" title="180° Character Turn Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/0VjdJexh3x8?si=Ia8Xb6GfbJHlpCno" title="Social Media Animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/YzmzDDQkupA?si=wxQLxpzHWR1fKOTs" title="MOHO Pro Rigging Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="carousel-nav">
+          <div class="carousel-dot active" aria-label="Slide 1"></div>
+          <div class="carousel-dot" aria-label="Slide 2"></div>
+          <div class="carousel-dot" aria-label="Slide 3"></div>
+          <div class="carousel-dot" aria-label="Slide 4"></div>
+          <div class="carousel-dot" aria-label="Slide 5"></div>
+          <div class="carousel-dot" aria-label="Slide 6"></div>
+        </div>
+      </div>
+    </section>
 
     <section id="about-preview">
       <h3>Meet Obioma</h3>
       <div class="about-preview-content">
-        <img src="JAOBI.png" alt="Obioma">
+        <img src="JAOBI.png" alt="Obioma - 2D Animator" loading="lazy">
         <div>
-          <p>Hi, I’m Obioma — a Nigerian 2D animator with over a decade of creative experience. Whether you're looking for vibrant explainer videos, stylish social loops, or rigged characters with personality, I’ve got you covered.</p>
-          <a href="about.html" class="cta-button">More About Me</a>
+          <p>Hi, I'm Obioma — a Nigerian 2D animator with over a decade of creative experience. Whether you're looking for vibrant explainer videos, stylish social loops, or rigged characters with personality, I've got you covered.</p>
+          <a href="about.html" class="cta-button" aria-label="Learn more about Obioma">More About Me</a>
         </div>
       </div>
     </section>
 
     <section id="contact-cta">
-      <h3>Got a project in mind? Let’s animate it.</h3>
-      <a href="contact.html" class="cta-button">Let’s Talk</a>
+      <h3>Got a project in mind? Let's animate it.</h3>
+      <a href="contact.html" class="cta-button" aria-label="Contact Obioma for animation projects">Let's Talk</a>
     </section>
+    
+    <!-- Structured data for SEO -->
+    <div class="structured-data" itemscope itemtype="https://schema.org/Person">
+      <span itemprop="name">Obioma</span>
+      <span itemprop="jobTitle">2D Animator</span>
+      <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+        <span itemprop="name">Jaobi Animations</span>
+      </span>
+      <span itemprop="description">Professional 2D Animator specializing in character animation, 180° turns, and animated stickers</span>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 Jaobi Animations. All rights reserved.</p>
+    <p>&copy; <span id="current-year">2025</span> Jaobi Animations. All rights reserved.</p>
     <nav>
-      <a href="https://fiverr.com">Fiverr</a>
-      <a href="https://airbit.com">Airbit</a>
+      <a href="https://fiverr.com" rel="noopener noreferrer" target="_blank">Fiverr</a>
+      <a href="https://airbit.com" rel="noopener noreferrer" target="_blank">Airbit</a>
     </nav>
   </footer>
+
+  <script>
+    // Hamburger Menu Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('nav ul');
+      
+      // Toggle mobile menu
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        this.setAttribute('aria-expanded', this.classList.contains('active'));
+      });
+      
+      // Close menu when clicking on a link
+      document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Update copyright year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // Carousel navigation functionality
+      const carousel = document.querySelector('.carousel');
+      const dots = document.querySelectorAll('.carousel-dot');
+      
+      if (carousel && dots.length > 0) {
+        carousel.addEventListener('scroll', function() {
+          const scrollPosition = carousel.scrollLeft;
+          const itemWidth = carousel.firstElementChild.offsetWidth + 16; // width + gap
+          const currentSlide = Math.round(scrollPosition / itemWidth);
+          
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+          });
+        });
+        
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', function() {
+            const itemWidth = carousel.firstElementChild.offsetWidth + 16;
+            carousel.scrollTo({
+              left: index * itemWidth,
+              behavior: 'smooth'
+            });
+          });
+        });
+      }
+      
+      // Lazy loading for iframes
+      const lazyIframes = document.querySelectorAll('iframe[loading="lazy"]');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target;
+            iframe.src = iframe.dataset.src;
+            observer.unobserve(iframe);
+          }
+        });
+      }, { rootMargin: '200px' });
+      
+      lazyIframes.forEach(iframe => {
+        iframe.dataset.src = iframe.src;
+        iframe.src = '';
+        observer.observe(iframe);
+      });
+    });
+  </script>
 </body>
 </html>

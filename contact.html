@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Jaobi Animations for professional 2D animation services including character animation, explainer videos, and animated stickers">
+  <meta name="keywords" content="contact animator, hire 2D animator, animation services, character animation, explainer videos">
+  <title>Contact | Jaobi Animations - Professional 2D Animator</title>
+  <style>
+    :root {
+      --primary-color: #ff4c60;
+      --secondary-color: #1e1e2f;
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.7;
+    }
+
+    /* Skip to content link for accessibility */
+    .skip-to-content {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--primary-color);
+      color: white;
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .skip-to-content:focus {
+      left: 0;
+    }
+
+    header {
+      background: var(--secondary-color);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--primary-color);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a:focus::after {
+      width: 100%;
+    }
+
+    nav ul li a.active {
+      color: var(--primary-color);
+    }
+
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    /* Hamburger menu for mobile */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      transition: var(--transition);
+    }
+
+    main {
+      padding: 3rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-header h2 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .page-header p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-info {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .contact-info h3 {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .contact-info h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-method i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-top: 0.25rem;
+    }
+
+    .contact-method div h4 {
+      color: var(--secondary-color);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-method div a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-method div a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-color);
+      color: var(--secondary-color);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .contact-form h3 {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .contact-form h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(255, 76, 96, 0.2);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #e04153;
+    }
+
+    .status-message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .success {
+      background: #d4edda;
+      color: #155724;
+      display: block;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      display: block;
+    }
+
+    footer {
+      background: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--secondary-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transition: var(--transition);
+      }
+
+      nav ul.show {
+        left: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+
+      .page-header h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  
+  <header>
+    <h1>Jaobi Animations</h1>
+    <button class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-header">
+      <h2>Get In Touch</h2>
+      <p>Have a project in mind or questions about my services? Reach out and let's create something amazing together!</p>
+    </section>
+
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:contact@jaobianimations.com">contact@jaobianimations.com</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <h4>Phone/WhatsApp</h4>
+              <a href="https://wa.me/2341234567890" target="_blank">+234 123 456 7890</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Location</h4>
+              <p>Lagos, Nigeria</p>
+            </div>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Working Hours</h4>
+              <p>Monday - Friday: 9am - 5pm WAT</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Follow Me</h3>
+        <div class="social-links">
+          <a href="https://www.fiverr.com/jaobianimations" target="_blank" rel="noopener noreferrer" aria-label="Fiverr">
+            <i class="fab fa-fiverr"></i>
+          </a>
+          <a href="https://www.upwork.com/freelancers/~jaobianimations" target="_blank" rel="noopener noreferrer" aria-label="Upwork">
+            <i class="fab fa-upwork"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/jaobianimations" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.youtube.com/@jaobianimations" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.instagram.com/jaobianimations" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number (optional)</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option value="character-animation">Character Animation</option>
+              <option value="body-turns">180° Body & Head Turns</option>
+              <option value="animated-stickers">Animated Stickers & Loops</option>
+              <option value="explainer-videos">Explainer Videos</option>
+              <option value="other">Other/Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+          <div id="status-message" class="status-message"></div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="current-year">2025</span> Jaobi Animations. All rights reserved.</p>
+    <p>Bringing your stories to life through animation</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hamburger menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('nav ul');
+      
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navMenu.classList.toggle('show');
+      });
+      
+      // Close menu when clicking on a link
+      document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('show');
+        });
+      });
+      
+      // Update copyright year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      // Form submission handling
+      const contactForm = document.getElementById('contact-form');
+      const statusMessage = document.getElementById('status-message');
+      
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (replace with actual AJAX call)
+        setTimeout(() => {
+          // In a real implementation, you would make an AJAX call to your server here
+          // For demonstration, we'll simulate a successful submission
+          statusMessage.textContent = 'Thank you! Your message has been sent successfully.';
+          statusMessage.className = 'status-message success';
+          contactForm.reset();
+          
+          // Reset button state
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            statusMessage.className = 'status-message';
+            statusMessage.textContent = '';
+          }, 5000);
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

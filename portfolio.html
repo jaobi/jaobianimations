@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional animation portfolio showcasing explainer videos, children's animations, and web animations by Jaobi Animations">
+  <meta name="keywords" content="2D animation, explainer videos, children animation, web animations, portfolio, Jaobi Animations">
+  <title>Portfolio | Jaobi Animations</title>
+  <style>
+    :root {
+      --primary-color: #ff4c60;
+      --secondary-color: #1e1e2f;
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+      --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Skip to content link for accessibility */
+    .skip-to-content {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--primary-color);
+      color: white;
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .skip-to-content:focus {
+      left: 0;
+    }
+
+    header {
+      background: var(--secondary-color);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--primary-color);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a:focus::after {
+      width: 100%;
+    }
+
+    nav ul li a.active {
+      color: var(--primary-color);
+    }
+
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    /* Hamburger menu for mobile */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      transition: var(--transition);
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-info {
+      padding: 1.5rem;
+    }
+
+    .video-info h3 {
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .video-info p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 4rem;
+      color: rgba(255, 76, 96, 0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .testimonial p {
+      margin-bottom: 1rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial .client {
+      font-weight: bold;
+      color: var(--primary-color);
+      text-align: right;
+    }
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.5rem;
+      background: white;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: bold;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    footer {
+      background: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--secondary-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transition: var(--transition);
+      }
+
+      nav ul.show {
+        left: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  
+  <header>
+    <h1>Jaobi Animations</h1>
+    <button class="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section>
+      <h2>My Animation Portfolio</h2>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="explainer">Explainer Videos</button>
+        <button class="filter-btn" data-filter="children">Children's Animation</button>
+        <button class="filter-btn" data-filter="web">Web Animations</button>
+      </div>
+
+      <div class="video-grid">
+        <!-- Explainer Videos -->
+        <div class="video-card" data-category="explainer">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/0QjL5gB8eg0" title="Financial Explainer Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Financial Services Explainer</h3>
+            <p>Animated explainer for a fintech startup</p>
+          </div>
+        </div>
+
+        <div class="video-card" data-category="explainer">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/O3BGvuxlTpM" title="Health Tech Explainer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Health Tech Solution</h3>
+            <p>Medical technology explainer animation</p>
+          </div>
+        </div>
+
+        <!-- Children's Animation -->
+        <div class="video-card" data-category="children">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/7j7SO4YbqmI" title="Children's Educational Animation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Adventures of Timmy</h3>
+            <p>Educational series for preschoolers</p>
+          </div>
+        </div>
+
+        <div class="video-card" data-category="children">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/q_-pQuBhN3Y" title="Animated Children's Story" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>The Magic Paintbrush</h3>
+            <p>Animated storybook adaptation</p>
+          </div>
+        </div>
+
+        <!-- Web Animations -->
+        <div class="video-card" data-category="web">
+          <div class="video-container">
+            <iframe height="300" style="width: 100%;" scrolling="no" title="Interactive Web Animation" src="https://codepen.io/jaobianimations/embed/ExvQdWv?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Interactive Loading Animation</h3>
+            <p>Custom web animation for SaaS platform</p>
+          </div>
+        </div>
+
+        <div class="video-card" data-category="web">
+          <div class="video-container">
+            <iframe height="300" style="width: 100%;" scrolling="no" title="Animated Infographic" src="https://codepen.io/jaobianimations/embed/GRvXxXZ?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Data Visualization</h3>
+            <p>Animated infographic for annual report</p>
+          </div>
+        </div>
+
+        <!-- More portfolio items -->
+        <div class="video-card" data-category="explainer">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/0VjdJexh3x8" title="Product Demo Animation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Smart Home Product Demo</h3>
+            <p>3D product animation with 2D elements</p>
+          </div>
+        </div>
+
+        <div class="video-card" data-category="children">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/YzmzDDQkupA" title="Animated Music Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <h3>Children's Music Video</h3>
+            <p>Lyric animation for educational song</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Client Testimonials</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <p>Jaobi Animations brought our brand story to life in ways we never imagined. The attention to detail and creative approach exceeded our expectations.</p>
+          <p class="client">— Sarah Johnson, TechStart Inc.</p>
+        </div>
+        <div class="testimonial">
+          <p>Working with Obioma was an absolute pleasure. Professional, creative, and always delivered on time. Our explainer video increased conversions by 30%!</p>
+          <p class="client">— Michael Chen, HealthPlus</p>
+        </div>
+        <div class="testimonial">
+          <p>The animated series Jaobi created for our educational platform has been a huge hit with kids and parents alike. We'll definitely be working together again.</p>
+          <p class="client">— Amina Diallo, LearnBright</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="current-year">2025</span> Jaobi Animations. All rights reserved.</p>
+    <p>Bringing your stories to life through animation</p>
+    <div class="social-links">
+      <a href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener noreferrer">🎬</a>
+      <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">📷</a>
+      <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">💼</a>
+      <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer">🐦</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hamburger menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('nav ul');
+      
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navMenu.classList.toggle('show');
+      });
+      
+      // Close menu when clicking on a link
+      document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('show');
+        });
+      });
+      
+      // Filter functionality
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const videoCards = document.querySelectorAll('.video-card');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          const filterValue = button.getAttribute('data-filter');
+          
+          // Filter videos
+          videoCards.forEach(card => {
+            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+      
+      // Update copyright year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // Lazy loading for iframes
+      const lazyIframes = document.querySelectorAll('iframe[loading="lazy"]');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target;
+            iframe.src = iframe.dataset.src;
+            observer.unobserve(iframe);
+          }
+        });
+      }, { rootMargin: '200px' });
+      
+      lazyIframes.forEach(iframe => {
+        iframe.dataset.src = iframe.src;
+        iframe.src = '';
+        observer.observe(iframe);
+      });
+    });
+  </script>
+</body>
+</html>
